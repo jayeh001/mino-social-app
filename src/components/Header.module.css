@@ -1,0 +1,42 @@
+/*Container css*/
+.container {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    height: 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem;
+    min-width: 90%;
+    border-bottom: solid 0.1rem;
+    background-color: white;
+}
+.mainTitle{
+    font-size: xx-large;
+}
+.title {
+    font-size: x-large;
+}
+@media screen and (max-width: 560px) {
+    .container {
+        padding: 1rem; /* Adjust padding for smaller screens */
+    }
+    .title {
+        font-size: medium;
+    }
+    .mainTitle {
+        font-size: medium;
+    }
+}
+@media screen and (max-width: 425px) {
+    .container {
+        padding: 1rem; /* Adjust padding for smaller screens */
+    }
+    .title {
+        font-size: small;
+    }
+    .mainTitle {
+        font-size: small;
+    }
+}
