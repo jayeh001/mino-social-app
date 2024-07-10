@@ -6,6 +6,7 @@ import Feed from "./components/Feed.jsx";
 import {useState} from "react";
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import EventsPage from "./pages/EventsPage.jsx";
+import ChatPage from "./pages/ChatPage.jsx";
 
 const theme = createTheme({
     primaryColor: "grape",
@@ -22,7 +23,8 @@ const theme = createTheme({
 })
 
 const router = createBrowserRouter([
-    {path: '/', element: <EventsPage/>}
+    {path: '/', element: <EventsPage/>},
+    {path: '/chat', element: <ChatPage/>}
 ]);
 
 
@@ -37,11 +39,9 @@ function App() {
               {/*<Header onButtonClick = {handleContentSelect}/>*/}
               {/*{ content === "events" && <Feed/> }*/}
               <RouterProvider router={router}/>
-
           </div>
       </MantineProvider>
 
   )
 }
-
 export default App

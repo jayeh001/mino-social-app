@@ -1,17 +1,19 @@
 import React from 'react';
-import {Card, Stack} from '@mantine/core'
+import {Card, Stack, Textarea, TextInput, Title} from '@mantine/core'
 import Posting from "./Posting.jsx";
 import { useDisclosure } from '@mantine/hooks';
 import { Modal, Button } from '@mantine/core';
+import '@mantine/dates/styles.css';
+import {DateTimePicker} from "@mantine/dates";
+import PostModal from "./PostModal.jsx";
+
 const Feed = () => {
-    const [opened, { open, close }] = useDisclosure(false);
+
+
     return (
             <Stack justify="flex-start" gap="sm"  align='center' mt="sm">
-                <Modal opened={opened} onClose={close} title="Authentication" centered zIndex={1001}>
-                    {/* Modal content */}
-                </Modal>
-                <Button onClick={open}>Post an Event</Button>
 
+                <PostModal/>
                 <Posting/>
                 <Posting/>
                 <Posting/>
