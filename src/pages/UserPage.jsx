@@ -1,14 +1,14 @@
 import React from 'react';
+import User from "../components/User.jsx";
 import Header from "../components/Header.jsx";
-import Feed from "../components/Feed.jsx";
 
-const EventsPage = () => {
+const UserPage = () => {
     return (
-        <div >
+        <div>
             <Header/>
-            <Feed/>
+            <User/>
         </div>
     );
 };
 
-export default EventsPage;
+export default UserPage;

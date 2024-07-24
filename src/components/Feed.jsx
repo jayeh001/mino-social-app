@@ -11,9 +11,10 @@ const Feed = () => {
 
 
     return (
-            <Stack justify="flex-start" gap="sm"  align='center' mt="sm">
 
-                <PostModal/>
+            <Stack justify="flex-start" gap="sm"  align='center'  >
+
+                <PostModal mt="lg"/>
                 <Posting/>
                 <Posting/>
                 <Posting/>

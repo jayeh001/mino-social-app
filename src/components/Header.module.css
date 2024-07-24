@@ -8,25 +8,34 @@
     justify-content: space-between;
     align-items: center;
     padding: 2rem;
-    min-width: 90%;
-    border-bottom: solid 0.1rem;
-    background-color: white;
+    min-width: 100%;
+
+
+    /*border-bottom: solid lightslategray 0.1rem;*/
+
 }
 .mainTitle{
-    font-size: xx-large;
+    font-size: xxx-large;
+    background: linear-gradient(to right, #f375ce, #65e0f3);
+    -webkit-background-clip: text; /* For Safari */
+    background-clip: text;
+    color: transparent;
+
+
 }
 .title {
     font-size: x-large;
+
 }
-@media screen and (max-width: 560px) {
+@media screen and (max-width: 680px) {
     .container {
         padding: 1rem; /* Adjust padding for smaller screens */
     }
     .title {
-        font-size: medium;
+        font-size: large;
     }
     .mainTitle {
-        font-size: medium;
+        font-size: large;
     }
 }
 @media screen and (max-width: 425px) {

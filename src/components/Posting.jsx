@@ -4,13 +4,13 @@ import styles from "./Posting.module.css"
 import {IconMapPinFilled, IconCalendarEvent} from "@tabler/icons-react"
 const Posting = () => {
     return (
-        <Card  className= {styles.card} shadow="md">
+        <Card  className= {styles.card} shadow="md" withBorder radius="lg" bg='primary'>
             <Group justify="space-between" align="center" mb="sm">
                 <Avatar variant="light" radius="xl" size="md" src="" />
                 <Title order={4} >Music event and beach side drinks</Title>
-                <Badge autoContrast color="red">1 hour ago</Badge>
+                <Badge autoContrast color="red.8">1 hour ago</Badge>
             </Group>
-            <Text size="sm" c="dimmed" mb="xs" autoContrast>
+            <Text size="sm"  mb="xs" autoContrast>
                 YOOOO. Just flew in here from Antarctica. I'm a penguin.
                 Let's get drinks and stare into the sun. I'm gonna be at the dopest
                 coffee shop in town. Just wanna meet some other travelers while in town

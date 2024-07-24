@@ -13,6 +13,7 @@ const PostModal = () => {
     const handleSubmit = () => {
         const { name, description, location, dateTime } = form.values;
         console.log(name, description, location, dateTime);
+        //TODO:
         form.reset();
         close();
 
@@ -34,7 +35,7 @@ const PostModal = () => {
     })
 
     return (
-        <div>
+        <div >
             <Modal opened={opened} onClose={close} title="Ready to Link? 🚀" zIndex={1001}>
                 <form onSubmit={form.onSubmit(handleSubmit)}>
                     <TextInput
@@ -79,7 +80,7 @@ const PostModal = () => {
                     </Container>
                     </form>
             </Modal>
-            <Button onClick={open}>Post an Event </Button>
+            <Button onClick={open} mt="sm" variant="filled" color="#3EEAF0" autoContrast>Post an Event </Button>
         </div>
     );
 };

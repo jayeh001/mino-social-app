@@ -1,0 +1,51 @@
+.avatar{
+    width: 14rem;
+    height: 14rem;
+    border: rem(3px) solid var(--mantine-color-body);
+}
+.card {
+    min-width: 400px;
+    max-width: 900px;
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+.div {
+    height: 10%;
+}
+
+
+@media (max-width: 700px) {
+    .avatar {
+        width: 8rem; /* Reduce width on smaller screens */
+        height: 8rem; /* Reduce height on smaller screens */
+    }
+    .card {
+        max-width: 700px;
+        margin-bottom: 16em;
+        margin-top: 2em;
+    }
+    .title {
+        font-size: 1.2rem;
+    }
+    .text {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 320px) {
+    .avatar {
+        width: 6rem; /* Reduce width on smaller screens */
+        height: 6rem; /* Reduce height on smaller screens */
+    }
+    .card {
+        min-width:330px;
+        margin-left: 50em;
+        margin-top: 2em;
+    }
+    .title {
+        font-size: 1rem;
+    }
+    .text {
+        font-size: 1rem;
+    }
+}

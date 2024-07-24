@@ -1,12 +1,19 @@
 .card {
     width: 70%;
+    max-width: 900px;
     padding: 0.5rem;
     border-radius: 0.5rem;
     border: 1px lightslategray;
     /*background-color: ghostwhite;*/
 }
-@media screen and (max-width: 768px) {
+@media (max-width: 768px) {
     .card {
         width: 90%;
+    }
+}
+@media (max-width: 375px) {
+    .card {
+        width: 100%;
+        margin-left: 0.7rem;
     }
 }

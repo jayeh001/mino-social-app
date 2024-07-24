@@ -1,0 +1,28 @@
+.group {
+    height: 95vh;
+    align-items: flex-start;
+    /*width: clamp(900px, 95%, 1600px);*/
+    flex-wrap: nowrap;
+
+}
+.container {
+width: 300px;
+}
+.scroll {
+    height: 65vh;
+}
+.card {
+    width: 30%;
+}
+.stack {
+    padding-right: 0;
+    margin-right: 0;
+    min-height: 95vh;
+    border-right: 1px solid #aaaaaa;
+}
+@media (max-width: 560px) {
+    .scroll {
+
+
+    }
+}
