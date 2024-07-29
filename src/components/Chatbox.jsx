@@ -10,7 +10,7 @@ import {IconSend} from "@tabler/icons-react";
 
 const Chatbox = () => {
     const [opened, {toggle}] = useDisclosure();
-    const[inputVal, setInputVal] = useState("");
+    const [inputVal, setInputVal] = useState("");
 
     const sendMsg = () => {
         console.log(inputVal)
@@ -18,24 +18,22 @@ const Chatbox = () => {
     }
 
 
-
     //TODO: when new message appears scroll to bottom.
     const viewport = useRef < HTMLDivElement > (null);
     const scrollToBottom = () => {
-    if (viewport.current) {
-        viewport.current.scrollTo({
-            top: viewport.current.scrollHeight / 2,
-            behavior: 'smooth'
-             });
+        if (viewport.current) {
+            viewport.current.scrollTo({
+                top: viewport.current.scrollHeight / 2,
+                behavior: 'smooth'
+            });
         }
     }
 
 
-
     return (
         <AppShell
-            header={{ height: 50 }}
-            navbar={{ width: {sm: 300, md: 400}, breakpoint: 'sm',  collapsed: { mobile: !opened } }}
+            header={{height: 50}}
+            navbar={{width: {sm: 300, md: 400}, breakpoint: 'sm', collapsed: {mobile: !opened}}}
             padding="xs">
             <AppShell.Navbar p="md">
                 <AppShell.Section>
@@ -51,16 +49,16 @@ const Chatbox = () => {
                 <AppShell.Section grow component={ScrollArea}>
                     <ChatGroupCard/>
                     <ChatGroupCard/>
-                    {Array(2)
-                        .fill(0)
-                        .map((_, index) => (
-                            <Skeleton key={index} h={28} mt="sm" animate={true} />
-                        ))}
+                    {/*{Array(2)*/}
+                    {/*    .fill(0)*/}
+                    {/*    .map((_, index) => (*/}
+                    {/*        <Skeleton key={index} h={28} mt="sm" animate={true}/>*/}
+                    {/*    ))}*/}
                 </AppShell.Section>
             </AppShell.Navbar>
 
             <AppShell.Main mt={-62}>
-                <ChatboxHeader opened={opened} toggle={toggle} />
+                <ChatboxHeader opened={opened} toggle={toggle}/>
                 <ScrollArea className={styles.scroll}>
                     <ChatMessage position={'right'}/>
                     <ChatMessage position={'left'}/>
@@ -82,8 +80,8 @@ const Chatbox = () => {
                         style={{flexGrow: 1}}
 
                         placeholder="Input placeholder"
-                        value = {inputVal}
-                        onChange={ (e) => setInputVal(e.target.value)}
+                        value={inputVal}
+                        onChange={(e) => setInputVal(e.target.value)}
                         onKeyDown={
                             !/\S/.test(inputVal) ? undefined : inputVal.length < 1 ? undefined : getHotkeyHandler([["Enter", sendMsg]])
                         }
@@ -99,11 +97,7 @@ const Chatbox = () => {
                         <IconSend/>
                     </ActionIcon>
                 </Group>
-
-
-
-            </AppShell.Main >
-
+            </AppShell.Main>
         </AppShell>
 
     );

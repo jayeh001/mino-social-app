@@ -5,7 +5,6 @@ import Feed from "../components/Feed.jsx";
 const EventsPage = () => {
     return (
         <div >
-            <Header/>
             <Feed/>
         </div>
     );

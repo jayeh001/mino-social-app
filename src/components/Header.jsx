@@ -6,24 +6,38 @@ import {
     Container,
     Group,
     Title,
-    useComputedColorScheme,
-    useMantineColorScheme
+    useMantineColorScheme,
+    Menu,
 } from '@mantine/core';
-import { IconPhoto, IconCalendarEvent,IconMessageFilled, IconSun, IconMoonStars } from '@tabler/icons-react';
+import {
+    IconPhoto,
+    IconCalendarEvent,
+    IconMessageFilled,
+    IconSun,
+    IconMoonStars,
+    IconUserFilled,
+    IconUserCircle,
+    IconLogout
+} from '@tabler/icons-react';
 import styles from './Header.module.css'
-import { useNavigate} from 'react-router-dom'
+import { useNavigate, Link} from 'react-router-dom'
+import {SignedIn, SignedOut, SignOutButton, useUser} from "@clerk/clerk-react";
 
 
 const Header = ( ) => {
     const { colorScheme, setColorScheme } = useMantineColorScheme();
-
-
-
     const navigate = useNavigate();
+    const {isSignedIn} = useUser()
     return (
         <Container className={styles.container} bg='primary'>
-            <Title    className={styles.mainTitle} visibleFrom = "xs" > mino</Title>
-            <Title  className={styles.title} visibleFrom = 'xs'> San Francisco</Title>
+            <Title
+                component={Link}
+                to={isSignedIn ? '/home' : '/'}
+                className={styles.mainTitle}
+                visibleFrom = "xs" > mino</Title>
+            <SignedIn>
+                <Title  className={styles.title} visibleFrom = 'xs'> San Francisco</Title>
+            </SignedIn>
             <Group justify="center" wrap="nowrap">
                 <ActionIcon
                     onClick={() => setColorScheme(colorScheme === 'light' ? 'dark' : 'light')}
@@ -34,33 +48,60 @@ const Header = ( ) => {
                 >
                     {colorScheme === 'dark' ? <IconSun size={20} /> : <IconMoonStars size={20}/>}
                 </ActionIcon>
-                <Button
-                    onClick={() => navigate('/')}
-                    variant="filled" color='#F05365'
-                    leftSection={<IconCalendarEvent size={12} />}
-                    autoContrast
-                    size="xs"
-                    to="/chat"
-                >events
-                </Button>
+                <SignedIn>
+                    <Button
+                        onClick={() => navigate('/home')}
+                        variant="filled" color='#F05365'
+                        leftSection={<IconCalendarEvent size={12} />}
+                        autoContrast
+                        size="xs"
+                    >events
+                    </Button>
 
-                <Button
-                    autoContrast
-                    onClick={() => navigate('/chat')}
-                    variant="filled" color="#FC9E4F"
-                    leftSection={<IconMessageFilled size={12} />}
-                    size="xs"
-                >chats</Button>
+                    <Button
+                        autoContrast
+                        onClick={() => navigate('/home/chat')}
+                        variant="filled" color="#FC9E4F"
+                        leftSection={<IconMessageFilled size={12} />}
+                        size="xs"
+                    >chats</Button>
 
-                <Button
-                    autoContrast
-                    onClick={() => navigate('/user')}
-                    variant="filled" color="#9FA0C3"
-                    leftSection={<IconPhoto size={12} />}
-                    size="xs"
-                >User</Button>
+                    <Menu size='xs' color='grape.6' trigger='hover' leftSection={<IconUserFilled size={12} />}>
+                        <Menu.Target>
+                            <Button   >User</Button>
+                        </Menu.Target>
+                        <Menu.Dropdown>
+                            <Menu.Item
+                                leftSection={<IconUserCircle size={15} />}
+                                onClick={() => navigate('/home/user')}>
+                                Profile
+                            </Menu.Item>
+                            <SignOutButton>
+                                <Menu.Item leftSection={<IconLogout size={15} />}> Sign out</Menu.Item>
+                            </SignOutButton>
+
+
+                        </Menu.Dropdown>
+                    </Menu>
+
+                    {/*<Button*/}
+                    {/*    autoContrast*/}
+                    {/*    onClick={() => navigate('/home/user')}*/}
+                    {/*    variant="filled" color="#9FA0C3"*/}
+                    {/*    leftSection={<IconPhoto size={12} />}*/}
+                    {/*    size="xs"*/}
+                    {/*>User</Button>*/}
+                </SignedIn>
+                <SignedOut>
+                    <Button
+                        autoContrast
+                        onClick={() => navigate('/sign-in')}
+                        variant="filled" color="#f39490"
+                        leftSection={<IconPhoto size={12} />}
+                        size="xs"
+                    >Sign In</Button>
+                </SignedOut>
             </Group>
-
         </Container>
     );
 };

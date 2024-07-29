@@ -5,7 +5,6 @@ import Header from "../components/Header.jsx";
 const UserPage = () => {
     return (
         <div>
-            <Header/>
             <User/>
         </div>
     );

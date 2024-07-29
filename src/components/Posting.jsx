@@ -2,6 +2,8 @@ import React from 'react';
 import {Avatar, Badge, Card, Group, Text, Title} from "@mantine/core";
 import styles from "./Posting.module.css"
 import {IconMapPinFilled, IconCalendarEvent} from "@tabler/icons-react"
+//TODO:
+//on click,
 const Posting = () => {
     return (
         <Card  className= {styles.card} shadow="md" withBorder radius="lg" bg='primary'>

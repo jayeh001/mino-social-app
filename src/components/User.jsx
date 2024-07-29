@@ -7,7 +7,7 @@ import {useForm} from "@mantine/form";
 import image from "../assets/ocean_sunset.webp"
 
 const User = () => {
-    const[editMode, setEditMode] = React.useState(false);
+    const [editMode, setEditMode] = React.useState(false);
 
     // Get pictures for avatar
     const [files, setFiles] = useState([])
@@ -18,12 +18,12 @@ const User = () => {
         interests: "eating, cooking, games, photography"
     });
     //previewing images in edit mode
-    const previews = files.slice(0,1).map((file) => {
+    const previews = files.slice(0, 1).map((file) => {
         const imageUrl = URL.createObjectURL(file);
         return <Avatar
-            radius = "lg"
+            radius="lg"
             bg='black'
-            src={imageUrl? imageUrl : null}
+            src={imageUrl ? imageUrl : null}
             className={styles.avatar}
             mx='auto'
             mt={-60}
@@ -47,8 +47,8 @@ const User = () => {
 
     })
     const handleSubmit = () => {
-        const { name, bio, interests} = form.values;
-        setState({name:name,bio:bio, interests:interests});
+        const {name, bio, interests} = form.values;
+        setState({name: name, bio: bio, interests: interests});
         setEditMode(editMode === false)
         //TODO:
         //update backend with new profile data
@@ -57,8 +57,8 @@ const User = () => {
     // 'url(https://images.unsplash.com/photo-1545132147-d037e6c54cfd?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)'
 
     return (
-        <Flex  direction='column' align='center'>
-            <Card  padding="xl" className={styles.card}  p mx='auto' radius='xl' bg='primary'>
+        <Flex direction='column' align='center'>
+            <Card padding="xl" className={styles.card} p mx='auto' radius='xl' bg='primary'>
                 <Card.Section
                     h={170}
                     style={{
@@ -70,15 +70,15 @@ const User = () => {
                 {editMode === false ? (
                     <>
                         <Avatar
-                        radius = "lg"
-                        bg='black'
-                        className={styles.avatar}
-                        mx='auto'
-                        mt={-60}/>
+                            radius="lg"
+                            bg='black'
+                            className={styles.avatar}
+                            mx='auto'
+                            mt={-60}/>
                         <Title ta="center" order={1} m='sm' mt="lg" className={styles.title}>{state.name}</Title>
                         <Title order={2} mt='lg' className={styles.title} ta='center'> Bio</Title>
                         <Text c="dimmed" className={styles.text}>{state.bio}</Text>
-                        <Title order={2} mt='lg' className={styles.title} ta='center'> Interests </Title >
+                        <Title order={2} mt='lg' className={styles.title} ta='center'> Interests </Title>
                         <Text c='dimmed' ta='center' className={styles.text}> {state.interests}</Text>
                     </>
                 ) : (
@@ -125,15 +125,14 @@ const User = () => {
                             </Button>
                         </form>
                     </>
-
                 )}
             </Card>
             {editMode === false ? (
                 <Button autoContrast variant='filled'
                         color='#F05365'
                         onClick={() => {
-                            setEditMode( editMode === false)
-                        }} >
+                            setEditMode(editMode === false)
+                        }}>
                     Edit Profile
                 </Button>
             ) : null}

@@ -5,7 +5,6 @@ import Chatbox from "../components/Chatbox.jsx";
 const ChatPage = () => {
     return (
         <div>
-            <Header/>
             <Chatbox/>
         </div>
     );
