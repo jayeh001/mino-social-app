@@ -12,6 +12,8 @@ const Chatbox = () => {
     const [opened, {toggle}] = useDisclosure();
     const [inputVal, setInputVal] = useState("");
 
+    console.log("hiiiii")
+
     const sendMsg = () => {
         console.log(inputVal)
         setInputVal("");

@@ -4,18 +4,42 @@ import {DateTimePicker} from "@mantine/dates";
 import {useDisclosure} from "@mantine/hooks";
 import {isNotEmpty, useField, useForm} from "@mantine/form";
 import {IconMessageFilled} from "@tabler/icons-react";
+import {useUser} from "@clerk/clerk-react";
+import axios from "axios";
 
-const PostModal = () => {
+const PostModal = ({addEvent}) => {
     const [opened, { open, close }] = useDisclosure(false);
 
+    const {user} = useUser();
 
+
+    const postEvent = async (reqBody) => {
+        const response = await axios.post('http://127.0.0.1:8000/api/events', reqBody);
+        console.log('Response after post event:', response.data);
+        return response.data;
+    }
 
     const handleSubmit = () => {
         const { name, description, location, dateTime } = form.values;
-        console.log(name, description, location, dateTime);
         //TODO:
         form.reset();
         close();
+        const reqBody = {
+            owner: user.id,
+            title: name,
+            descr: description,
+            postedDate: new Date(),
+            location: location,
+            dateTime: dateTime,
+        }
+         postEvent(reqBody).then(data => {
+             console.log("ROW DATA: ",data)
+             addEvent(data)
+         });
+
+
+
+
 
 
     }

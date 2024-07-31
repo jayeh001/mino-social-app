@@ -10,6 +10,7 @@ export default function SignInPage() {
         <Container
         style={{display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: 200}}>
             <SignIn
+                forceRedirectUrl='/home'
                 path="/sign-in"
                 signUpUrl = {CLERK_SIGN_UP_URL}
             />

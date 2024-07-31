@@ -6,6 +6,7 @@ const SignUpPage = () => {
         <Container
             style={{display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: 200}}>
             <SignUp
+                forceRedirectUrl='/home/user'
                 signInUrl='/sign-in'
                 path="/sign-up" />
         </Container>
