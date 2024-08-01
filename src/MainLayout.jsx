@@ -22,26 +22,5 @@ export default function MainLayout() {
     }
 
     return <Outlet />;
-    // const navigate = useNavigate()
-    // const [shouldRender, setShouldRender] = useState(false);
-    //
-    // console.log('test', userId)
-    //
-    // React.useEffect(() => {
-    //     if (!userId) {
-    //         navigate("/sign-in")
-    //     } else {
-    //         setShouldRender(true);
-    //     }
-    // }, [isLoaded,navigate, userId])
-    //
-    // if (!isLoaded) return "Loading...!"
-    //
-    // if (!shouldRender) {
-    //     return null;
-    // } else {
-    //     return (
-    //         <Outlet/>
-    //     )
-    // }
+
 }

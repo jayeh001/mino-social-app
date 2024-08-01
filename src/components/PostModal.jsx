@@ -32,6 +32,7 @@ const PostModal = ({addEvent}) => {
             location: location,
             dateTime: dateTime,
         }
+        console.log("before SENDING: ", reqBody.postedDate)
          postEvent(reqBody).then(data => {
              console.log("ROW DATA: ",data)
              addEvent(data)

@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {ScrollArea, Title, AppShell, Skeleton, Burger, TextInput, ActionIcon, Group} from "@mantine/core";
 import styles from "./Chatbox.module.css";
 import {getHotkeyHandler, useDisclosure} from "@mantine/hooks";
@@ -6,19 +6,43 @@ import ChatGroupCard from "./ChatGroupCard.jsx";
 import ChatboxHeader from "./ChatboxHeader.jsx";
 import ChatMessage from "./ChatMessage.jsx";
 import {IconSend} from "@tabler/icons-react";
+import {io} from "socket.io-client"
+import axios from "axios";
+import {useUser} from "@clerk/clerk-react";
+import Posting from "./Posting.jsx";
 
 
 const Chatbox = () => {
+    const [events, setEvents] = useState([]);
+    const [chatHeader, setChatHeader] = useState("");
+    const {user} = useUser();
+
     const [opened, {toggle}] = useDisclosure();
     const [inputVal, setInputVal] = useState("");
-
-    console.log("hiiiii")
 
     const sendMsg = () => {
         console.log(inputVal)
         setInputVal("");
     }
+    const onClickCard = (index) => {
+        //use event ID to grab data and chat messages
+        console.log('hi')
+        setChatHeader(events[index])
+    }
 
+    useEffect(()=> {
+        const fetchEvents = async () => {
+            const response = await axios.get('http://127.0.0.1:8000/api/chat', {
+                params: {
+                    userId: user.id
+                }
+            });
+            console.log("EVENTS ",response.data)
+            setEvents(response.data);
+        }
+        fetchEvents();
+
+    },[])
 
     //TODO: when new message appears scroll to bottom.
     const viewport = useRef < HTMLDivElement > (null);
@@ -30,7 +54,6 @@ const Chatbox = () => {
             });
         }
     }
-
 
     return (
         <AppShell
@@ -49,18 +72,14 @@ const Chatbox = () => {
                     <Title ta='center' mt='xs' order={3}> Event Chats </Title>
                 </AppShell.Section>
                 <AppShell.Section grow component={ScrollArea}>
-                    <ChatGroupCard/>
-                    <ChatGroupCard/>
-                    {/*{Array(2)*/}
-                    {/*    .fill(0)*/}
-                    {/*    .map((_, index) => (*/}
-                    {/*        <Skeleton key={index} h={28} mt="sm" animate={true}/>*/}
-                    {/*    ))}*/}
+                    {events.map((item,index) => (
+                        <ChatGroupCard key={index} index={index} eventName = {item.title} onClick = {onClickCard}/>
+                    ))}
                 </AppShell.Section>
             </AppShell.Navbar>
 
             <AppShell.Main mt={-62}>
-                <ChatboxHeader opened={opened} toggle={toggle}/>
+                <ChatboxHeader opened={opened} toggle={toggle} {...chatHeader}/>
                 <ScrollArea className={styles.scroll}>
                     <ChatMessage position={'right'}/>
                     <ChatMessage position={'left'}/>

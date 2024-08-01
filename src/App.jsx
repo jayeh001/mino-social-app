@@ -6,12 +6,13 @@ import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import EventsPage from "./pages/EventsPage.jsx";
 import ChatPage from "./pages/ChatPage.jsx";
 import UserPage from "./pages/UserPage.jsx";
-import {ClerkProvider} from '@clerk/clerk-react'
 import LandingPage from "./pages/LandingPage.jsx";
 import RootLayout from "./RootLayout.jsx";
 import SignInPage from "./pages/SignInPage.jsx";
 import MainLayout from "./MainLayout.jsx";
 import SignUpPage from "./pages/SignUpPage.jsx";
+import {socket} from './socket'
+import {useEffect, useState} from "react";
 //
 // const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 // if (!PUBLISHABLE_KEY) {
@@ -58,7 +59,28 @@ const router = createBrowserRouter([
 
 
 function App() {
-    console.log(theme)
+    const [isConnected, setIsConnected] = useState(socket.connected);
+    const [fooEvents, setFooEvents] = useState([]);
+
+    useEffect(()=> {
+        function onConnect() {
+            setIsConnected(true);
+            console.log("SOCKET CONNECTED")
+        }
+        function onDisconnect() {
+            setIsConnected(false);
+            console.log('SOCKET DISCONNECTED')
+        }
+
+        socket.on("connect", onConnect); // true
+        socket.on('disconnect', onDisconnect);
+
+        return () => {
+            socket.off('connect', onConnect);
+            socket.off('disconnect', onDisconnect);
+    };
+    },[])
+
     return (
         <MantineProvider theme={theme} defaultColorScheme="auto">
             <div>
