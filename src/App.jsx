@@ -11,13 +11,6 @@ import RootLayout from "./RootLayout.jsx";
 import SignInPage from "./pages/SignInPage.jsx";
 import MainLayout from "./MainLayout.jsx";
 import SignUpPage from "./pages/SignUpPage.jsx";
-import {socket} from './socket'
-import {useEffect, useState} from "react";
-//
-// const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
-// if (!PUBLISHABLE_KEY) {
-//     throw new Error("Missing Publishable Key")
-// }
 
 const theme = createTheme({
     fontFamily: 'roboto, helvetica, sans-serif',
@@ -50,37 +43,10 @@ const router = createBrowserRouter([
         ]
     }
 ])
-// const router = createBrowserRouter([
-//     {path: '/', element: <EventsPage/>},
-//     {path: '/chat', element: <ChatPage/>},
-//     {path: '/user', element: <UserPage/>},
-//     {path: '/land', element: <LandingPage/>}
-// ]);
+
 
 
 function App() {
-    const [isConnected, setIsConnected] = useState(socket.connected);
-    const [fooEvents, setFooEvents] = useState([]);
-
-    useEffect(()=> {
-        function onConnect() {
-            setIsConnected(true);
-            console.log("SOCKET CONNECTED")
-        }
-        function onDisconnect() {
-            setIsConnected(false);
-            console.log('SOCKET DISCONNECTED')
-        }
-
-        socket.on("connect", onConnect); // true
-        socket.on('disconnect', onDisconnect);
-
-        return () => {
-            socket.off('connect', onConnect);
-            socket.off('disconnect', onDisconnect);
-    };
-    },[])
-
     return (
         <MantineProvider theme={theme} defaultColorScheme="auto">
             <div>
@@ -89,5 +55,4 @@ function App() {
         </MantineProvider>
     )
 }
-
 export default App

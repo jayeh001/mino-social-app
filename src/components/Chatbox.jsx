@@ -1,36 +1,50 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {ScrollArea, Title, AppShell, Skeleton, Burger, TextInput, ActionIcon, Group} from "@mantine/core";
+import {ScrollArea, Title, AppShell, Skeleton, Burger, TextInput, ActionIcon, Group, Card} from "@mantine/core";
 import styles from "./Chatbox.module.css";
 import {getHotkeyHandler, useDisclosure} from "@mantine/hooks";
 import ChatGroupCard from "./ChatGroupCard.jsx";
 import ChatboxHeader from "./ChatboxHeader.jsx";
 import ChatMessage from "./ChatMessage.jsx";
 import {IconSend} from "@tabler/icons-react";
-import {io} from "socket.io-client"
 import axios from "axios";
 import {useUser} from "@clerk/clerk-react";
-import Posting from "./Posting.jsx";
+import connectSocket from "../utils/socket.js";
+
 
 
 const Chatbox = () => {
     const [events, setEvents] = useState([]);
-    const [chatHeader, setChatHeader] = useState("");
+    const [chatHeader, setChatHeader] = useState(null);
+    const [currEventId, setCurrEventId] = useState(null);
+    const [socket, setCurrSocket] = useState(null);
+
     const {user} = useUser();
+    const userId = user.id;
 
     const [opened, {toggle}] = useDisclosure();
     const [inputVal, setInputVal] = useState("");
 
     const sendMsg = () => {
         console.log(inputVal)
+        if (socket) {
+            socket.emit("msg",socket.auth.userid)
+        }
         setInputVal("");
+
+
     }
+    //Renders current event header and chat
     const onClickCard = (index) => {
         //use event ID to grab data and chat messages
         console.log('hi')
         setChatHeader(events[index])
+        setCurrEventId(events[index].eventid)
     }
 
     useEffect(()=> {
+        const socket = connectSocket(userId)
+        setCurrSocket(socket)
+
         const fetchEvents = async () => {
             const response = await axios.get('http://127.0.0.1:8000/api/chat', {
                 params: {
@@ -41,6 +55,12 @@ const Chatbox = () => {
             setEvents(response.data);
         }
         fetchEvents();
+
+        return () => {
+            socket.off("msg", () => {
+                console.log("SOCKET OFF: ",socket.auth.userid)
+            })
+        }
 
     },[])
 
@@ -78,8 +98,14 @@ const Chatbox = () => {
                 </AppShell.Section>
             </AppShell.Navbar>
 
-            <AppShell.Main mt={-62}>
-                <ChatboxHeader opened={opened} toggle={toggle} {...chatHeader}/>
+            <AppShell.Main mt={-64}>
+                {chatHeader !== null?
+                    <ChatboxHeader opened={opened} toggle={toggle} {...chatHeader}/>:
+                    <Card shadow="md" withBorder  bg='primary' grow mt='xs' mb='lg'>
+                        <Title ta='center'> Select an event on left</Title>
+                    </Card>
+
+                }
                 <ScrollArea className={styles.scroll}>
                     <ChatMessage position={'right'}/>
                     <ChatMessage position={'left'}/>

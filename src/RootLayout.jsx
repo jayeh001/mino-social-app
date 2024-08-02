@@ -1,8 +1,7 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Header from "./components/Header.jsx";
-import {ClerkProvider} from "@clerk/clerk-react";
+import {ClerkProvider, useUser} from "@clerk/clerk-react";
 import {Link, Outlet, useNavigate} from 'react-router-dom'
-
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
 
 if (!PUBLISHABLE_KEY) {
@@ -11,6 +10,7 @@ if (!PUBLISHABLE_KEY) {
 
 const RootLayout = () => {
     const navigate = useNavigate();
+
 
     return (
         <ClerkProvider

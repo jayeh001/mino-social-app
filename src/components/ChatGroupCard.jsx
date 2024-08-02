@@ -9,7 +9,7 @@ const ChatGroupCard = ({index, eventName, onClick}) => {
 
     return (
         <Card
-            bg="blue.1"
+            withBorder
             shadow="md"
             className={styles.card}
             mt='xs'

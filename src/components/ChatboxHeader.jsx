@@ -2,7 +2,7 @@ import React from 'react';
 import {Avatar, Badge, Burger, Card, Group, Text, Title, Tooltip} from "@mantine/core";
 import {IconCalendarEvent, IconMapPinFilled} from "@tabler/icons-react";
 import styles from "./ChatBoxHeader.module.css";
-
+import {getTime, formatDateTime} from "../utils/DateTime"
 const ChatboxHeader = ({opened, toggle, ...chatHeader}) => {
     return (
         <Card  shadow="md" withBorder  bg='primary' grow mt='xs' mb='lg' >
@@ -14,7 +14,7 @@ const ChatboxHeader = ({opened, toggle, ...chatHeader}) => {
                     size="sm"
                 />
                 <Title order={5} className={styles.title} >{chatHeader.title}</Title>
-                <Badge size='xs' autoContrast color="red.8">{chatHeader.posteddate}</Badge>
+                <Badge size='xs' autoContrast color="red.8">{getTime(chatHeader.posteddate)}</Badge>
             </Group>
             <Text size="xs" className={styles.text} mb="xs" autoContrast>
                 {chatHeader.descr}
@@ -32,18 +32,16 @@ const ChatboxHeader = ({opened, toggle, ...chatHeader}) => {
                     </Tooltip>
                 </Avatar.Group>
             </Tooltip.Group>
-            <Group justify="space-between" align="center">
+            <Group justify="space-between" align="center" mt="xs">
                 <Group justify="flex-start">
                     <IconMapPinFilled size={15}/>
                     <Text className={styles.text}> {chatHeader.address} </Text>
                 </Group>
                 <Group>
                     < IconCalendarEvent size={15}/>
-                    <Text className={styles.text}>{chatHeader.date}</Text>
+                    <Text className={styles.text}>{formatDateTime(chatHeader.date)}</Text>
                 </Group>
-
             </Group>
-
         </Card>
     );
 };
