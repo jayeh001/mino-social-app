@@ -1,6 +1,6 @@
 # Mino - Event Posting and Chat Platform
 
-Discover and meet people around you. Whether you're new in town or traveling, Mino allows you to see local hangouts in your area and join real-time group chats for these meetups to hash out details and plans. 
+Discover and meet people around you. Whether you're new in town or traveling, Mino allows you to see local hangouts in your area and join real-time group chats for these meetups to hash out details and plans. This is an early MVP to showcase the core features and first look of the site!
 
 ## Screenshots
 <img width="500" alt="Screenshot 2024-08-06 at 3 56 55 PM" src="https://github.com/user-attachments/assets/405fd374-4a1d-4edd-81a3-b33a70786872">
