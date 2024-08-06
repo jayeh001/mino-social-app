@@ -68,7 +68,7 @@ const Header = ( ) => {
 
                     <Menu size='xs' color='grape.6' trigger='hover' leftSection={<IconUserFilled size={12} />}>
                         <Menu.Target>
-                            <Button   >User</Button>
+                            <Button>User</Button>
                         </Menu.Target>
                         <Menu.Dropdown>
                             <Menu.Item
@@ -83,14 +83,6 @@ const Header = ( ) => {
 
                         </Menu.Dropdown>
                     </Menu>
-
-                    {/*<Button*/}
-                    {/*    autoContrast*/}
-                    {/*    onClick={() => navigate('/home/user')}*/}
-                    {/*    variant="filled" color="#9FA0C3"*/}
-                    {/*    leftSection={<IconPhoto size={12} />}*/}
-                    {/*    size="xs"*/}
-                    {/*>User</Button>*/}
                 </SignedIn>
                 <SignedOut>
                     <Button

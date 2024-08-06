@@ -1,5 +1,5 @@
 import React from 'react';
-import {Avatar, Button, Card, Group, Text, Tooltip} from "@mantine/core";
+import {Avatar, Card, Text, Tooltip} from "@mantine/core";
 import styles from './ChatGroupCard.module.css'
 
 const ChatGroupCard = ({index, eventName, onClick}) => {
@@ -13,8 +13,7 @@ const ChatGroupCard = ({index, eventName, onClick}) => {
             shadow="md"
             className={styles.card}
             mt='xs'
-            onClick={handleClick}
-        >
+            onClick={handleClick}>
             <Tooltip.Group>
                 <Avatar.Group spacing="xs">
                     <Tooltip label="Salazar Troop" withArrow>

@@ -1,5 +1,5 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {ScrollArea, Title, AppShell, Skeleton, Burger, TextInput, ActionIcon, Group, Card} from "@mantine/core";
+import {ScrollArea, Title, AppShell, Burger, TextInput, ActionIcon, Group, Card} from "@mantine/core";
 import styles from "./Chatbox.module.css";
 import {getHotkeyHandler, useDisclosure} from "@mantine/hooks";
 import ChatGroupCard from "./ChatGroupCard.jsx";
@@ -33,25 +33,24 @@ const Chatbox = () => {
 
 
     }
-    //Renders current event header and chat
+    //Renders current event header and relevant chat
     const onClickCard = (index) => {
         //use event ID to grab data and chat messages
-        console.log('hi')
         setChatHeader(events[index])
         setCurrEventId(events[index].eventid)
     }
-
+    //Init first render of page
     useEffect(()=> {
         const socket = connectSocket(userId)
         setCurrSocket(socket)
 
+        const baseUrl = import.meta.env.VITE_SERVER_URL
         const fetchEvents = async () => {
-            const response = await axios.get('http://127.0.0.1:8000/api/chat', {
+            const response = await axios.get(`${baseUrl}/api/chat`, {
                 params: {
                     userId: user.id
                 }
             });
-            console.log("EVENTS ",response.data)
             setEvents(response.data);
         }
         fetchEvents();
@@ -115,17 +114,11 @@ const Chatbox = () => {
                     <ChatMessage position={'right'}/>
                     <ChatMessage position={'left'}/>
                     <ChatMessage position={'right'}/>
-                    <ChatMessage position={'left'}/>
-                    <ChatMessage position={'left'}/>
-                    <ChatMessage position={'right'}/>
-                    <ChatMessage position={'left'}/>
-                    <ChatMessage position={'left'}/>
 
                 </ScrollArea>
                 <Group mt={10}>
                     <TextInput
                         style={{flexGrow: 1}}
-
                         placeholder="Input placeholder"
                         value={inputVal}
                         onChange={(e) => setInputVal(e.target.value)}

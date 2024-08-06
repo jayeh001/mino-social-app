@@ -37,19 +37,17 @@ const User = () => {
     //Get form data
     const form = useForm({
         initialValues: {
-            name: "",
+            name: "i",
             bio: "",
             interests: ""
         }
     })
     //
     useEffect(() => {
-        // TODO:
-        //fetch init data from backend to init forms and init look of profile
 
+        //fetch init data from backend to init forms and init look of profile
         const fetchUserData = async () => {
             const token = await getToken();
-            // const {userId, firstName, lastName} = user
             const userId = user.id;
             const firstName = user.firstName;
             const lastName = user.lastName;
@@ -67,8 +65,6 @@ const User = () => {
                 const payload = await response.data;
                 const { name, bio, interests} = payload.data;
                 setState({name: name, bio: bio, interests: interests});
-
-
             } catch (error) {
                 console.log("error fetching data: ", error);
             }
@@ -144,7 +140,7 @@ const User = () => {
                         <form onSubmit={form.onSubmit(handleSubmit)}>
                             <TextInput
                                 label="Name"
-                                placeholder="Namez"
+                                placeholder="Name"
                                 key={form.key('name')}
                                 {...form.getInputProps('name')}
                             />

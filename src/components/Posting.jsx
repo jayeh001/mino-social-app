@@ -5,8 +5,7 @@ import {IconCalendarEvent, IconMapPinFilled} from "@tabler/icons-react"
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
 import {formatDateTime, getTime} from "../utils/DateTime.js";
-//TODO:
-//on click,
+
 const Posting = ({title, descr, address, date, name, posteddate, id, userid }) => {
     const navigate = useNavigate();
 
@@ -21,7 +20,6 @@ const Posting = ({title, descr, address, date, name, posteddate, id, userid }) =
         }
         attendEvent(requestBody);
     }
-
 
     return (
         <Card  className= {styles.card} shadow="md" withBorder radius="lg" bg='primary' onClick={handleClick}>

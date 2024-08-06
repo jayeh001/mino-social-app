@@ -22,13 +22,13 @@ const ChatboxHeader = ({opened, toggle, ...chatHeader}) => {
             <Tooltip.Group>
                 <Avatar.Group spacing="xxs">
                     <Tooltip label="Salazar Troop" withArrow>
-                        <Avatar size='sm'  radius="xl" />
+                        <Avatar size='sm' radius="xl" color='blue.8'/>
                     </Tooltip>
                     <Tooltip label="Bandit Crimes" withArrow>
-                        <Avatar size='sm' radius="xl" />
+                        <Avatar size='sm' radius="xl" color='blue.8'/>
                     </Tooltip>
                     <Tooltip label="Jane Rata" withArrow>
-                        <Avatar size='sm' radius="xl" />
+                        <Avatar size='sm' radius="xl" color='blue.8'/>
                     </Tooltip>
                 </Avatar.Group>
             </Tooltip.Group>
