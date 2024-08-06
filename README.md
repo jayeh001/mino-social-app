@@ -1,8 +1,22 @@
-# React + Vite
+# Mino - Event posting and chat platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Discover and meet people around you. Whether you're new in town or traveling, Mino allows you to see local hangouts in your area and join real-time group chats for these meetups to hash out details and plans. 
 
-Currently, two official plugins are available:
+## Screenshots
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+
+
+## Installation
+
+Guide for setting up front-end. Will require signing up with Clerk. This project uses Clerk auth for log in and sign up. 
+
+```bash
+  git clone https://github.com/jayeh001/mino-social-app.git
+  cd mino-social-app
+  npm install
+  npm run dev
+```
+Set up a .env.local file to place your Clerk public key and the host URL of the mino back-end API server.
+
+To set up the mino back-end API, please go here: https://github.com/jayeh001/mino-backend
