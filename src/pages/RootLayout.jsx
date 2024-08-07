@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import Header from "./components/Header.jsx";
+import Header from "../components/Header.jsx";
 import {ClerkProvider, useUser} from "@clerk/clerk-react";
 import {Link, Outlet, useNavigate} from 'react-router-dom'
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY

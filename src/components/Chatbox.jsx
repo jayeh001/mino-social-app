@@ -73,7 +73,6 @@ const Chatbox = () => {
             });
         }
     }
-
     return (
         <AppShell
             header={{height: 50}}
